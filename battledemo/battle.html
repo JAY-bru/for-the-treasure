@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For The Treasure - Combat Demo</title>
+    <!-- Load Tailwind CSS -->
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <!-- Load React and ReactDOM -->
+    <script crossorigin src="[https://unpkg.com/react@18/umd/react.development.js](https://unpkg.com/react@18/umd/react.development.js)"></script>
+    <script crossorigin src="[https://unpkg.com/react-dom@18/umd/react-dom.development.js](https://unpkg.com/react-dom@18/umd/react-dom.development.js)"></script>
+    <!-- Load Babel for JSX parsing -->
+    <script src="[https://unpkg.com/@babel/standalone/babel.min.js](https://unpkg.com/@babel/standalone/babel.min.js)"></script>
+    
+    <style>
+        body { background-color: #020617; }
+        .animate-spin-slow { animation: spin 0.5s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #292524; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #57534e; border-radius: 4px; }
+        
+        .animate-bounce-short { animation: bounce-short 1s ease-in-out forwards; }
+        @keyframes bounce-short {
+          0%, 100% { transform: translateY(0); opacity: 0; }
+          20% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+          80% { opacity: 1; }
+        }
+        
+        /* ---------------- Visual Effects ---------------- */
+        .shake-effect { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-3px, 0, 0) rotate(-1deg); }
+            20%, 80% { transform: translate3d(4px, 0, 0) rotate(1deg); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0) rotate(-2deg); }
+            40%, 60% { transform: translate3d(6px, 0, 0) rotate(2deg); }
+        }
+        
+        .slash-effect {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.9) 48%, rgba(220,38,38,0.7) 50%, transparent 55%);
+            background-size: 200% 200%;
+            animation: slash 0.3s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+            pointer-events: none;
+            z-index: 40;
+            border-radius: 0.5rem;
+        }
+        @keyframes slash {
+            0% { background-position: 200% 0; opacity: 0; }
+            50% { opacity: 1; }
+            100% { background-position: -50% 100%; opacity: 0; }
+        }
+        
+        .heal-effect {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(74,222,128,0.5) 0%, transparent 70%);
+            animation: pulse-heal 0.6s ease-out forwards;
+            pointer-events: none;
+            z-index: 40;
+            border-radius: 0.5rem;
+        }
+        @keyframes pulse-heal {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        /* ------------------------------------------- */
+
+        /* Background Particles */
+        .particle {
+          position: absolute;
+          background: rgba(255, 180, 100, 0.4);
+          border-radius: 50%;
+          filter: blur(1px);
+          animation: float 10s infinite ease-in-out;
+        }
+        .p1 { width: 4px; height: 4px; left: 20%; top: 80%; animation-delay: 0s; }
+        .p2 { width: 3px; height: 3px; left: 70%; top: 60%; animation-delay: 2s; }
+        .p3 { width: 5px; height: 5px; left: 40%; top: 40%; animation-delay: 4s; }
+        .p4 { width: 2px; height: 2px; left: 80%; top: 20%; animation-delay: 1s; }
+        @keyframes float {
+          0% { transform: translateY(0) translateX(0); opacity: 0; }
+          20% { opacity: 0.8; }
+          80% { opacity: 0.8; }
+          100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- IMPORTANT: Link to your separated JSX file -->
+    <script type="text/babel" src="./battledemo.jsx"></script>
+</body>
+</html>
